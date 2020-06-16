@@ -5,19 +5,19 @@ import {
     UpdateDateColumn,
     PrimaryGeneratedColumn,
     OneToMany,
-} from 'typeorm';
+} from "typeorm";
 
-import Transaction from './Transaction';
+import Transaction from "./Transaction";
 
-@Entity('categories')
+@Entity("categories")
 class Category {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @Column()
     title: string;
 
-    @OneToMany(() => Transaction, transaction => transaction.category)
+    @OneToMany(() => Transaction, (transaction) => transaction.category)
     transaction: Transaction;
 
     @CreateDateColumn()

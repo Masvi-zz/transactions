@@ -1,9 +1,9 @@
-import { isUuid } from 'uuidv4';
-import { getCustomRepository } from 'typeorm';
+import { isUuid } from "uuidv4";
+import { getCustomRepository } from "typeorm";
 
-import AppError from '../errors/AppError';
+import AppError from "../errors/AppError";
 
-import TransactionRepository from '../repositories/TransactionsRepository';
+import TransactionRepository from "../repositories/TransactionsRepository";
 
 interface RequestDTO {
     id: string;
@@ -11,17 +11,19 @@ interface RequestDTO {
 
 class DeleteTransactionService {
     public async execute({ id }: RequestDTO): Promise<void> {
-        const transictionRepository = getCustomRepository(TransactionRepository);
+        const transictionRepository = getCustomRepository(
+            TransactionRepository
+        );
 
-        //verifica se o id e valido
+        // verifica se o id e valido
         if (!isUuid(id)) {
-            throw new AppError('Invalid parameter');
+            throw new AppError("Invalid parameter");
         }
 
         const transaction = await transictionRepository.findOne(id);
 
         if (!transaction) {
-            throw new AppError('Transaction does not exist');
+            throw new AppError("Transaction does not exist");
         }
 
         await transictionRepository.remove(transaction);
