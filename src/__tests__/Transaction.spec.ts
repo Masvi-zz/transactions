@@ -210,7 +210,8 @@ describe("Transaction", () => {
 
         const transactions = await transactionsRepository.find();
         const categories = await categoriesRepository.find();
-
+        console.log('here..')
+        console.log(categories)
         expect(categories).toHaveLength(2);
         expect(categories).toEqual(
             expect.arrayContaining([
